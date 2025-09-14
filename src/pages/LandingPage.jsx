@@ -1,10 +1,12 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar } from 'react-icons/fa';
 import EpicButton from '../components/EpicButton';
 import YouTubePlayer from '../components/YouTubePlayer';
 
 export default function LandingPage() {
+  const [siteEntered, setSiteEntered] = useState(false);
+
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
     { title: 'Análisis de Partida 360°', desc: 'Obtén una ventaja total con análisis pre-partida, consejos en vivo y reportes post-partida para entender a fondo tus fortalezas y debilidades.', icon: <FaCrosshairs /> },
@@ -14,180 +16,170 @@ export default function LandingPage() {
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
 
-  return (
-    <div className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.jpg')] bg-cover bg-center bg-fixed">
-      <section 
-        className="relative h-screen flex flex-col justify-center items-center text-center px-4 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "linear-gradient(rgba(1, 10, 19, 0.7), rgba(1, 10, 19, 0.9)), url('/img/hero-bg.jpg')" }}
-      >
-        <motion.h1
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-6xl md:text-8xl font-display font-extrabold text-lol-gold-light text-shadow-lg"
-        >
-          LoL MetaMind
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="mt-4 text-lg md:text-2xl max-w-3xl text-lol-gold-light/90 text-shadow-md"
-        >
-        La plataforma definitiva que fusiona la astrologia con la IA, y analiticas oficiales, para darte coaching en tiempo real, clips virales y una ventaja estratégica
-        </motion.p>
+  if (!siteEntered) {
+    return (
+      <div className="h-screen w-screen bg-lol-blue-dark flex flex-col justify-center items-center text-center p-4 bg-[url('/img/background.jpg')] bg-cover bg-center">
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ delay: 1.8, type: 'spring', stiffness: 100 }}
-          className="mt-10"
-        >
-          <EpicButton>Explorar Plataforma</EpicButton>
-        </motion.div>
-      </section>
-
-      <section className="py-20 px-4 bg-lol-blue-dark/80 backdrop-blur-sm">
-        <motion.h2
-          initial={{ x: -100, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-display font-bold text-center mb-12 text-lol-gold text-shadow-md"
         >
-          Así se Ve la Gloria
-        </motion.h2>
-        <div className="flex justify-center">
+          <h1 className="text-6xl md:text-8xl font-display font-extrabold text-lol-gold-light text-shadow-lg">
+            LoL MetaMind
+          </h1>
+          <p className="mt-4 text-lg md:text-2xl max-w-3xl text-lol-gold-light/90 text-shadow-md">
+            Tu ventaja estratégica ha llegado.
+          </p>
           <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="w-full max-w-4xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl"
-            style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-12"
           >
-            <YouTubePlayer videoId="NolHvXjZA4A" />
+             <EpicButton onClick={() => setSiteEntered(true)}>INGRESAR</EpicButton>
           </motion.div>
-        </div>
-      </section>
+        </motion.div>
+      </div>
+    );
+  }
 
-      <section className="py-20 px-4 bg-lol-blue-dark">
-        <motion.h2
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-display font-bold text-center text-lol-gold mb-16 text-shadow-md"
+  return (
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.jpg')] bg-cover bg-center bg-fixed"
+      >
+        <section 
+          className="relative h-screen flex flex-col justify-center items-center text-center px-4 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: "linear-gradient(rgba(1, 10, 19, 0.7), rgba(1, 10, 19, 0.9)), url('/img/hero-bg.jpg')" }}
         >
-          Funcionalidades Épicas
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {features.map((feature, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: idx * 0.1 }}
-              className="bg-lol-blue-medium p-6 border-2 border-lol-gold-dark hover:border-lol-blue-accent transition-colors duration-300 flex flex-col items-center text-center"
-            >
-              <div className="text-4xl text-lol-blue-accent mb-4">{feature.icon}</div>
-              <h3 className="text-2xl font-display font-bold mb-3 text-lol-gold">{feature.title}</h3>
-              <p className="text-lol-gold-light/80 text-lg leading-relaxed">{feature.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+          <motion.h1
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            className="text-6xl md:text-8xl font-display font-extrabold text-lol-gold-light text-shadow-lg"
+          >
+            LoL MetaMind
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 1 }}
+            className="mt-4 text-lg md:text-2xl max-w-3xl text-lol-gold-light/90 text-shadow-md"
+          >
+            La plataforma definitiva que fusiona tu signo zodiacal con la IA para darte coaching en tiempo real, clips virales y una ventaja estratégica única.
+          </motion.p>
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 1.8, type: 'spring', stiffness: 100 }}
+            className="mt-10"
+          >
+            <EpicButton>Explorar Plataforma</EpicButton>
+          </motion.div>
+        </section>
 
-      <section className="py-20 px-4 bg-lol-blue-dark">
-        <motion.h2
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-4xl md:text-6xl font-display font-bold text-center text-lol-gold mb-16 text-shadow-md"
-        >
-          Elegí Tu Arsenal
-        </motion.h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Columna Free */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+        <section className="py-20 px-4 bg-lol-blue-dark/80 backdrop-blur-sm">
+          <motion.h2
+            initial={{ x: -100, opacity: 0 }}
+            whileInView={{ x: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="bg-lol-blue-medium p-8 border-2 border-lol-gold-dark flex flex-col"
+            className="text-4xl md:text-6xl font-display font-bold text-center mb-12 text-lol-gold text-shadow-md"
           >
-            <h3 className="text-3xl font-display font-bold text-lol-gold-light mb-4">Plan Gratuito</h3>
-            <p className="text-lol-gold-light/70 mb-8">Perfecto para empezar a explorar tu potencial astrológico.</p>
-            <ul className="space-y-4 text-lg">
-              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Recomendador de Campeón</li>
-              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Análisis Pre-Partida Básico</li>
-              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Perfil Zodiacal Básico</li>
-              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Clips con marca de agua</li>
-              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> TTS para clips (Voz estándar)</li>
-            </ul>
-          </motion.div>
-          {/* Columna Premium */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="bg-lol-blue-medium p-8 border-2 border-lol-blue-accent relative flex flex-col"
-            style={{ boxShadow: '0 0 25px rgba(11, 198, 227, 0.5)' }}
-          >
-            <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-lol-blue-accent text-lol-blue-dark font-bold font-display px-4 py-1 text-sm uppercase tracking-widest">
-              <FaStar className="inline-block mr-2" />
-              Más Popular
+            Así se Ve la Gloria
+          </motion.h2>
+          <div className="flex justify-center">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1.2 }}
+              className="w-full max-w-4xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl"
+              style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
+            >
+              <YouTubePlayer videoId="NolHvXjZA4A" shouldPlay={siteEntered} />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* --- El resto de las secciones permanecen igual --- */}
+
+        <section className="py-20 px-4 bg-lol-blue-dark">
+            <motion.h2 initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="text-4xl md:text-6xl font-display font-bold text-center text-lol-gold mb-16 text-shadow-md">
+                Funcionalidades Épicas
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {features.map((feature, idx) => (
+                <motion.div key={idx} initial={{ opacity: 0, y: 50 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: idx * 0.1 }} className="bg-lol-blue-medium p-6 border-2 border-lol-gold-dark hover:border-lol-blue-accent transition-colors duration-300 flex flex-col items-center text-center">
+                <div className="text-4xl text-lol-blue-accent mb-4">{feature.icon}</div>
+                <h3 className="text-2xl font-display font-bold mb-3 text-lol-gold">{feature.title}</h3>
+                <p className="text-lol-gold-light/80 text-lg leading-relaxed">{feature.desc}</p>
+                </motion.div>
+            ))}
             </div>
-            <h3 className="text-3xl font-display font-bold text-lol-blue-accent mb-4">Plan Premium</h3>
-            <p className="text-lol-gold-light/70 mb-8">Desata todo el poder de MetaMind y domina la grieta.</p>
-            <ul className="space-y-4 text-lg">
-                <li className="flex items-start gap-3"><FaCheckCircle className="text-lol-blue-accent mt-1 flex-shrink-0" /> <div><strong className="text-lol-gold-light">Todo lo del Plan Gratuito,</strong> y además:</div></li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Consejos Estratégicos en Vivo</strong></li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Análisis Post-Partida Detallado</strong></li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Overlays Inteligentes Animados</strong></li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Clips Ilimitados sin marca</strong></li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">TTS Pro en Overlay y Clips</strong></li>
-            </ul>
-          </motion.div>
-        </div>
-      </section>
+        </section>
 
-      <section className="py-20 px-4 bg-lol-blue-dark/80 text-center bg-cover bg-center" style={{ backgroundImage: "linear-gradient(rgba(10, 20, 40, 0.8), rgba(10, 20, 40, 0.9)), url('/img/background.jpg')"}}>
-        <motion.h2
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-5xl md:text-7xl font-display font-bold mb-6 text-lol-gold-light text-shadow-lg"
-        >
-          Elevá tu Juego Hoy
-        </motion.h2>
-        <motion.p
-          initial={{ y: 50, opacity: 0 }}
-          whileInView={{ y: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="text-lol-gold-light/90 text-lg md:text-2xl mb-10 max-w-3xl mx-auto text-shadow-md"
-        >
-          Dejá de adivinar. Empezá a dominar. Uníte a la revolución de estrategia y contenido con el poder de la IA y la astrología.
-        </motion.p>
-        <EpicButton>Registrate Gratis</EpicButton>
-      </section>
+        <section className="py-20 px-4 bg-lol-blue-dark">
+            <motion.h2 initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="text-4xl md:text-6xl font-display font-bold text-center text-lol-gold mb-16 text-shadow-md">
+                Elegí Tu Arsenal
+            </motion.h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1 }} className="bg-lol-blue-medium p-8 border-2 border-lol-gold-dark flex flex-col">
+                <h3 className="text-3xl font-display font-bold text-lol-gold-light mb-4">Plan Gratuito</h3>
+                <p className="text-lol-gold-light/70 mb-8">Perfecto para empezar a explorar tu potencial astrológico.</p>
+                <ul className="space-y-4 text-lg">
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Recomendador de Campeón</li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Análisis Pre-Partida Básico</li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Perfil Zodiacal Básico</li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Clips con marca de agua</li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> TTS para clips (Voz estándar)</li>
+                </ul>
+            </motion.div>
+            <motion.div initial={{ opacity: 0, x: 50 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }} className="bg-lol-blue-medium p-8 border-2 border-lol-blue-accent relative flex flex-col" style={{ boxShadow: '0 0 25px rgba(11, 198, 227, 0.5)' }}>
+                <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-lol-blue-accent text-lol-blue-dark font-bold font-display px-4 py-1 text-sm uppercase tracking-widest">
+                <FaStar className="inline-block mr-2" />
+                Más Popular
+                </div>
+                <h3 className="text-3xl font-display font-bold text-lol-blue-accent mb-4">Plan Premium</h3>
+                <p className="text-lol-gold-light/70 mb-8">Desata todo el poder de MetaMind y domina la grieta.</p>
+                <ul className="space-y-4 text-lg">
+                    <li className="flex items-start gap-3"><FaCheckCircle className="text-lol-blue-accent mt-1 flex-shrink-0" /> <div><strong className="text-lol-gold-light">Todo lo del Plan Gratuito,</strong> y además:</div></li>
+                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Consejos Estratégicos en Vivo</strong></li>
+                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Análisis Post-Partida Detallado</strong></li>
+                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Overlays Inteligentes Animados</strong></li>
+                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Clips Ilimitados sin marca</strong></li>
+                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">TTS Pro en Overlay y Clips</strong></li>
+                </ul>
+            </motion.div>
+            </div>
+        </section>
 
-      <footer className="py-8 bg-lol-blue-dark text-center text-lol-gold-light/70 border-t border-lol-gold-dark">
-        <div className="flex justify-center items-center gap-6 mb-4">
-            <a href="https://www.facebook.com/SolucionesSOIN" target="_blank" rel="noopener noreferrer" className="hover:text-lol-blue-accent transition-colors">
-                <FaFacebook size={28} />
-            </a>
-            <a href="https://websoin.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:text-lol-blue-accent transition-colors">
-                <FaGlobe size={28} />
-            </a>
-        </div>
-        <p>Un proyecto de <strong>SO-&gt;IN Soluciones Informáticas</strong></p>
-        <p>&copy; {new Date().getFullYear()} Todos los derechos reservados.</p>
-      </footer>
-    </div>
+        <section className="py-20 px-4 bg-lol-blue-dark/80 text-center bg-cover bg-center" style={{ backgroundImage: "linear-gradient(rgba(10, 20, 40, 0.8), rgba(10, 20, 40, 0.9)), url('/img/background.jpg')"}}>
+            <motion.h2 initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="text-5xl md:text-7xl font-display font-bold mb-6 text-lol-gold-light text-shadow-lg">
+                Elevá tu Juego Hoy
+            </motion.h2>
+            <motion.p initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }} className="text-lol-gold-light/90 text-lg md:text-2xl mb-10 max-w-3xl mx-auto text-shadow-md">
+                Dejá de adivinar. Empezá a dominar. Uníte a la revolución de estrategia y contenido con el poder de la IA y la astrología.
+            </motion.p>
+            <EpicButton>Registrate Gratis</EpicButton>
+        </section>
+
+        <footer className="py-8 bg-lol-blue-dark text-center text-lol-gold-light/70 border-t border-lol-gold-dark">
+            <div className="flex justify-center items-center gap-6 mb-4">
+                <a href="https://www.facebook.com/SolucionesSOIN" target="_blank" rel="noopener noreferrer" className="hover:text-lol-blue-accent transition-colors">
+                    <FaFacebook size={28} />
+                </a>
+                <a href="https://websoin.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:text-lol-blue-accent transition-colors">
+                    <FaGlobe size={28} />
+                </a>
+            </div>
+            <p>Un proyecto de <strong>SO-&gt;IN Soluciones Informáticas</strong></p>
+            <p>&copy; {new Date().getFullYear()} Todos los derechos reservados.</p>
+        </footer>
+      </motion.div>
+    </AnimatePresence>
   );
 }

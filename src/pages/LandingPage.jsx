@@ -9,12 +9,22 @@ export default function LandingPage() {
 
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
-    { title: 'Análisis de Partida 306°', desc: 'Obtén una ventaja total con análisis pre-partida, consejos en vivo y reportes post-partida para entender a fondo tus fortalezas y debilidades.', icon: <FaCrosshairs /> },
+    { title: 'Análisis de Partida 360°', desc: 'Obtén una ventaja total con análisis pre-partida, consejos en vivo y reportes post-partida para entender a fondo tus fortalezas y debilidades.', icon: <FaCrosshairs /> },
     { title: 'Overlays Inteligentes', desc: 'Transforma tu stream con overlays que te narran consejos y planes de juego en tiempo real para que no quites la vista de la acción.', icon: <FaPalette /> },
     { title: 'TTS Narrativo', desc: 'Inmortaliza tus jugadas. Nuestra IA genera una narración épica y sincronizada para tus clips virales, convirtiendo cada highlight en una leyenda.', icon: <FaMicrophoneAlt /> },
     { title: 'Clips Automáticos', desc: 'La IA detecta tus jugadas clave y genera clips virales listos para TikTok y YouTube, con tu branding y la narración épica incluidas.', icon: <FaFilm /> },
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
+
+  // CAMBIO: Nueva función para manejar el ingreso al sitio
+  const handleSiteEnter = () => {
+    // 1. Crea un objeto de audio y lo reproduce
+    const audio = new Audio('/welcome.mp3');
+    audio.play();
+
+    // 2. Cambia el estado para mostrar la página principal
+    setSiteEntered(true);
+  };
 
   if (!siteEntered) {
     return (
@@ -36,7 +46,8 @@ export default function LandingPage() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="mt-12"
           >
-             <EpicButton onClick={() => setSiteEntered(true)}>INGRESAR</EpicButton>
+             {/* CAMBIO: El botón ahora llama a la nueva función */}
+             <EpicButton onClick={handleSiteEnter}>INGRESAR</EpicButton>
           </motion.div>
         </motion.div>
       </div>

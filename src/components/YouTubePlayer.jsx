@@ -21,6 +21,8 @@ export default function YouTubePlayer({ videoId, shouldPlay }) {
   };
 
   const onReady = (event) => {
+    // CAMBIO: Se agrega esta línea para poner el volumen al 50%
+    event.target.setVolume(50);
     setPlayer(event.target);
   };
 
@@ -53,7 +55,7 @@ export default function YouTubePlayer({ videoId, shouldPlay }) {
   const handleVideoClick = () => {
     if (player) {
       const playerState = player.getPlayerState();
-      if (playerState === 1) {
+      if (playerState === 1) { // 1 es PLAYING
         player.pauseVideo();
       } else {
         player.playVideo();

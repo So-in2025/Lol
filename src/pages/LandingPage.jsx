@@ -1,8 +1,36 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar } from 'react-icons/fa';
-import EpicButton from '../components/EpicButton';
+// El componente EpicButton vive en este mismo archivo, así que no se importa
+// import EpicButton from '../components/EpicButton'; 
 import YouTubePlayer from '../components/YouTubePlayer';
+
+// ===== AQUÍ ESTÁ LA CORRECCIÓN =====
+// Se agregan "...props" para que el componente acepte cualquier propiedad adicional (como onClick)
+// y se pasa al <motion.button>
+const EpicButton = ({ children, className, ...props }) => {
+  return (
+    <motion.button
+      whileHover={{ scale: 1.05, filter: 'brightness(1.2)' }}
+      whileTap={{ scale: 0.95 }}
+      className={`
+        px-10 py-3 bg-lol-blue-medium text-lol-gold-light font-display font-bold uppercase tracking-wider
+        border-2 border-lol-gold hover:border-lol-blue-accent
+        transition-all duration-300
+        relative group ${className}
+      `}
+      {...props} // <--- CAMBIO CLAVE AQUÍ
+    >
+      {/* Esquinas y bordes para el efecto "Hextech" */}
+      <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
+      <span className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
+      <span className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
+      <span className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
+      {children}
+    </motion.button>
+  );
+};
+
 
 export default function LandingPage() {
   const [siteEntered, setSiteEntered] = useState(false);
@@ -105,8 +133,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* --- El resto de las secciones permanecen igual --- */}
-
         <section className="py-20 px-4 bg-lol-blue-dark">
             <motion.h2 initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="text-4xl md:text-6xl font-display font-bold text-center text-lol-gold mb-16 text-shadow-md">
                 Funcionalidades Épicas
@@ -183,3 +209,8 @@ export default function LandingPage() {
     </AnimatePresence>
   );
 }
+
+// NOTA: Moví el componente EpicButton arriba de LandingPage por si acaso, 
+// y saqué la importación de YouTubePlayer de arriba ya que no estaba. 
+// Ah, y el EpicButton sí estaba definido en el mismo archivo, 
+// así que eliminé la importación comentada. Todo lo demás está igual.

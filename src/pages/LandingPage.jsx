@@ -4,7 +4,6 @@ import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, Fa
 import EpicButton from '../components/EpicButton';
 import YouTubePlayer from '../components/YouTubePlayer';
 
-// Definimos EpicButton aquí para que esté todo en un solo lugar y funcione
 const EpicButton = ({ children, className, ...props }) => {
   return (
     <motion.button

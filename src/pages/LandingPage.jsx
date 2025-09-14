@@ -6,7 +6,6 @@ import EpicButton from '../components/EpicButton';
 export default function LandingPage() {
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
-    // CAMBIO: Título y descripción actualizados para abarcar todas las fases del análisis.
     { title: 'Análisis de Partida 360°', desc: 'Obtén una ventaja total con análisis pre-partida, consejos en vivo y reportes post-partida para entender a fondo tus fortalezas y debilidades.', icon: <FaCrosshairs /> },
     { title: 'Overlays Inteligentes', desc: 'Transforma tu stream con overlays que te narran consejos y planes de juego en tiempo real para que no quites la vista de la acción.', icon: <FaPalette /> },
     { title: 'TTS Narrativo', desc: 'Inmortaliza tus jugadas. Nuestra IA genera una narración épica y sincronizada para tus clips virales, convirtiendo cada highlight en una leyenda.', icon: <FaMicrophoneAlt /> },
@@ -14,7 +13,8 @@ export default function LandingPage() {
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
 
-  const videoUrl = "https://www.youtube.com/watch?v=NolHvXjZA4A";
+  // ===== CAMBIO: Se actualiza la URL del video por la nueva =====
+  const videoUrl = "https://www.youtube.com/embed/NolHvXjZA4A?autoplay=1&loop=1&playlist=NolHvXjZA4A&showinfo=0&modestbranding=1";
 
   return (
     <div className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.jpg')] bg-cover bg-center bg-fixed">
@@ -132,7 +132,6 @@ export default function LandingPage() {
             <p className="text-lol-gold-light/70 mb-8">Perfecto para empezar a explorar tu potencial astrológico.</p>
             <ul className="space-y-4 text-lg">
               <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Recomendador de Campeón</li>
-              {/* CAMBIO: Se agrega el análisis pre-partida al plan gratuito. */}
               <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Análisis Pre-Partida Básico</li>
               <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Perfil Zodiacal Básico</li>
               <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Clips con marca de agua</li>
@@ -156,7 +155,6 @@ export default function LandingPage() {
             <p className="text-lol-gold-light/70 mb-8">Desata todo el poder de MetaMind y domina la grieta.</p>
             <ul className="space-y-4 text-lg">
                 <li className="flex items-start gap-3"><FaCheckCircle className="text-lol-blue-accent mt-1 flex-shrink-0" /> <div><strong className="text-lol-gold-light">Todo lo del Plan Gratuito,</strong> y además:</div></li>
-                {/* CAMBIO: Se especifica el coach en vivo y se agrega el análisis post-partida. */}
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Consejos Estratégicos en Vivo</strong></li>
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Análisis Post-Partida Detallado</strong></li>
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Overlays Inteligentes Animados</strong></li>

@@ -11,23 +11,21 @@ export default function YouTubePlayer({ videoId, shouldPlay }) {
     width: '100%',
     playerVars: {
       autoplay: 0,
-      controls: 0, // Cero controles visibles
+      controls: 0,
       loop: 1,
-      playlist: videoId, // Para que el loop funcione
+      playlist: videoId,
       modestbranding: 1,
       playsinline: 1,
-      rel: 0, // No mostrar videos relacionados al final
+      rel: 0,
     },
   };
 
   const onReady = (event) => {
-    // La librería nos entrega el reproductor listo para usar
     setPlayer(event.target);
   };
 
-  // Observer para detectar si el video está en pantalla
   useEffect(() => {
-    if (!player) return; // Espera a que el player esté listo
+    if (!player) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -52,11 +50,10 @@ export default function YouTubePlayer({ videoId, shouldPlay }) {
     };
   }, [player, shouldPlay]);
 
-  // Maneja el clic en el video para pausar o reanudar
   const handleVideoClick = () => {
     if (player) {
       const playerState = player.getPlayerState();
-      if (playerState === 1) { // 1 es el código de YouTube para "PLAYING"
+      if (playerState === 1) {
         player.pauseVideo();
       } else {
         player.playVideo();

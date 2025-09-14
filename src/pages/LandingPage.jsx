@@ -1,21 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-// CAMBIO: Se agregan íconos para la nueva sección (Check y Estrella)
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar } from 'react-icons/fa';
 import EpicButton from '../components/EpicButton';
 
 export default function LandingPage() {
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
-    // CAMBIO: Descripción del Coach actualizada para incluir el análisis por signo.
-    { title: 'Coach en Tiempo Real', desc: 'Analiza en vivo a tus aliados y enemigos, usando incluso su signo zodiacal para predecir su estilo de juego y darte consejos estratégicos únicos.', icon: <FaCrosshairs /> },
-    { title: 'Skins Zodiacales', desc: 'Eleva tu stream con overlays y animaciones premium. Haz que tus clips luzcan únicos con un branding zodiacal profesional y personalizado.', icon: <FaPalette /> },
-    { title: 'TTS Narrativo', desc: 'Escucha tus mejores jugadas narradas por una IA con voz profesional, totalmente sincronizada con la acción para un efecto increíble.', icon: <FaMicrophoneAlt /> },
+    // CAMBIO: Título y descripción actualizados para abarcar todas las fases del análisis.
+    { title: 'Análisis de Partida 360°', desc: 'Obtén una ventaja total con análisis pre-partida, consejos en vivo y reportes post-partida para entender a fondo tus fortalezas y debilidades.', icon: <FaCrosshairs /> },
+    { title: 'Overlays Inteligentes', desc: 'Transforma tu stream con overlays que te narran consejos y planes de juego en tiempo real para que no quites la vista de la acción.', icon: <FaPalette /> },
+    { title: 'TTS Narrativo', desc: 'Inmortaliza tus jugadas. Nuestra IA genera una narración épica y sincronizada para tus clips virales, convirtiendo cada highlight en una leyenda.', icon: <FaMicrophoneAlt /> },
     { title: 'Clips Automáticos', desc: 'La IA detecta tus jugadas clave y genera clips virales listos para TikTok y YouTube, con tu branding y la narración épica incluidas.', icon: <FaFilm /> },
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
 
-  const videoUrl = "https://www.youtube.com/embed/aR-KAldshAE?autoplay=1&loop=1&playlist=aR-KAldshAE&showinfo=0&modestbranding=1";
+  const videoUrl = "https://www.youtube.com/watch?v=NolHvXjZA4A";
 
   return (
     <div className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.jpg')] bg-cover bg-center bg-fixed">
@@ -97,7 +96,7 @@ export default function LandingPage() {
             <motion.div
               key={idx}
               initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              whileInView={{ y: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.1 }}
               className="bg-lol-blue-medium p-6 border-2 border-lol-gold-dark hover:border-lol-blue-accent transition-colors duration-300 flex flex-col items-center text-center"
@@ -110,7 +109,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ===== NUEVA SECCIÓN: FREE VS PREMIUM ===== */}
       <section className="py-20 px-4 bg-lol-blue-dark">
         <motion.h2
           initial={{ y: 50, opacity: 0 }}
@@ -134,9 +132,11 @@ export default function LandingPage() {
             <p className="text-lol-gold-light/70 mb-8">Perfecto para empezar a explorar tu potencial astrológico.</p>
             <ul className="space-y-4 text-lg">
               <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Recomendador de Campeón</li>
+              {/* CAMBIO: Se agrega el análisis pre-partida al plan gratuito. */}
+              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Análisis Pre-Partida Básico</li>
               <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Perfil Zodiacal Básico</li>
               <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Clips con marca de agua</li>
-              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> TTS con voz estándar</li>
+              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> TTS para clips (Voz estándar)</li>
             </ul>
           </motion.div>
           {/* Columna Premium */}
@@ -156,16 +156,16 @@ export default function LandingPage() {
             <p className="text-lol-gold-light/70 mb-8">Desata todo el poder de MetaMind y domina la grieta.</p>
             <ul className="space-y-4 text-lg">
                 <li className="flex items-start gap-3"><FaCheckCircle className="text-lol-blue-accent mt-1 flex-shrink-0" /> <div><strong className="text-lol-gold-light">Todo lo del Plan Gratuito,</strong> y además:</div></li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Coach en Tiempo Real Avanzado</strong></li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Skins y Overlays Zodiacales</strong></li>
+                {/* CAMBIO: Se especifica el coach en vivo y se agrega el análisis post-partida. */}
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Consejos Estratégicos en Vivo</strong></li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Análisis Post-Partida Detallado</strong></li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Overlays Inteligentes Animados</strong></li>
                 <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Clips Ilimitados sin marca</strong></li>
-                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">TTS con Voz Profesional</strong></li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">TTS Pro en Overlay y Clips</strong></li>
             </ul>
           </motion.div>
         </div>
       </section>
-      {/* ========================================= */}
-
 
       <section className="py-20 px-4 bg-lol-blue-dark/80 text-center bg-cover bg-center" style={{ backgroundImage: "linear-gradient(rgba(10, 20, 40, 0.8), rgba(10, 20, 40, 0.9)), url('/img/background.jpg')"}}>
         <motion.h2

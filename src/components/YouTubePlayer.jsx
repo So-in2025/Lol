@@ -1,3 +1,5 @@
+// src/components/YouTubePlayer.jsx
+
 import React from 'react';
 import { useEffect, useRef, useState } from 'react';
 import YouTube from 'react-youtube';
@@ -21,7 +23,6 @@ export default function YouTubePlayer({ videoId, shouldPlay }) {
   };
 
   const onReady = (event) => {
-    // CAMBIO: Se agrega esta línea para poner el volumen al 50%
     event.target.setVolume(50);
     setPlayer(event.target);
   };

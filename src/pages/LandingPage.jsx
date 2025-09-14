@@ -1,13 +1,15 @@
+// src/pages/LandingPage.jsx
+
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar } from 'react-icons/fa';
+import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar, FaPlayCircle } from 'react-icons/fa';
 import EpicButton from '../components/EpicButton';
 import YouTubePlayer from '../components/YouTubePlayer';
 
 export default function LandingPage() {
   const [siteEntered, setSiteEntered] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(false);
 
-  // CAMBIO: Se actualiza la descripción de "Análisis de Partida 360°" para incluir builds y runas.
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
     { title: 'Análisis de Partida 360°', desc: 'Domina cada partida con builds y runas adaptativas, análisis pre-juego, consejos en vivo y reportes post-partida para explotar tus fortalezas.', icon: <FaCrosshairs /> },
@@ -25,7 +27,7 @@ export default function LandingPage() {
 
   if (!siteEntered) {
     return (
-      <div className="h-screen w-screen bg-lol-blue-dark flex flex-col justify-center items-center text-center p-4 bg-[url('/img/background.jpg')] bg-cover bg-center">
+      <div className="h-screen w-screen bg-lol-blue-dark flex flex-col justify-center items-center text-center p-4 bg-[url('/img/background.webp')] bg-cover bg-center">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -56,11 +58,11 @@ export default function LandingPage() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.jpg')] bg-cover bg-center bg-fixed"
+        className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.webp')] bg-cover bg-center bg-fixed"
       >
         <section 
           className="relative h-screen flex flex-col justify-center items-center text-center px-4 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: "linear-gradient(rgba(1, 10, 19, 0.7), rgba(1, 10, 19, 0.9)), url('/img/hero-bg.jpg')" }}
+          style={{ backgroundImage: "linear-gradient(rgba(1, 10, 19, 0.7), rgba(1, 10, 19, 0.9)), url('/img/hero-bg.webp')" }}
         >
           <motion.h1
             initial={{ opacity: 0, y: -50 }}
@@ -107,7 +109,16 @@ export default function LandingPage() {
               className="w-full max-w-4xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl"
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
             >
-              <YouTubePlayer videoId="NolHvXjZA4A" shouldPlay={siteEntered} />
+              {!loadVideo ? (
+                <div onClick={() => setLoadVideo(true)} className="relative aspect-w-16 aspect-h-9 cursor-pointer group">
+                  <img src="/img/hero-bg.webp" alt="Video Thumbnail" className="w-full h-full object-cover rounded-3xl" loading="lazy" />
+                  <div className="absolute inset-0 bg-black/40 flex justify-center items-center transition-opacity duration-300 group-hover:opacity-100 opacity-80">
+                    <FaPlayCircle className="text-white text-7xl md:text-9xl transform transition-transform duration-300 group-hover:scale-110" />
+                  </div>
+                </div>
+              ) : (
+                <YouTubePlayer videoId="NolHvX-jZA4A" shouldPlay={siteEntered} />
+              )}
             </motion.div>
           </div>
         </section>
@@ -152,7 +163,6 @@ export default function LandingPage() {
                 <p className="text-lol-gold-light/70 mb-8">Desata todo el poder de MetaMind y domina la grieta.</p>
                 <ul className="space-y-4 text-lg">
                     <li className="flex items-start gap-3"><FaCheckCircle className="text-lol-blue-accent mt-1 flex-shrink-0" /> <div><strong className="text-lol-gold-light">Todo lo del Plan Gratuito,</strong> y además:</div></li>
-                    {/* CAMBIO: Se agrega la nueva funcionalidad a la lista Premium */}
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Builds y Runas Adaptativas</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Consejos Estratégicos en Vivo</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Análisis Post-Partida Detallado</strong></li>
@@ -164,7 +174,7 @@ export default function LandingPage() {
             </div>
         </section>
 
-        <section className="py-20 px-4 bg-lol-blue-dark/80 text-center bg-cover bg-center" style={{ backgroundImage: "linear-gradient(rgba(10, 20, 40, 0.8), rgba(10, 20, 40, 0.9)), url('/img/background.jpg')"}}>
+        <section className="py-20 px-4 bg-lol-blue-dark/80 text-center bg-cover bg-center" style={{ backgroundImage: "linear-gradient(rgba(10, 20, 40, 0.8), rgba(10, 20, 40, 0.9)), url('/img/background.webp')"}}>
             <motion.h2 initial={{ scale: 0.8, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1 }} className="text-5xl md:text-7xl font-display font-bold mb-6 text-lol-gold-light text-shadow-lg">
                 Elevá tu Juego Hoy
             </motion.h2>

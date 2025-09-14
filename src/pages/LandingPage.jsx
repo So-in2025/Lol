@@ -92,7 +92,7 @@ export default function LandingPage() {
             transition={{ delay: 1, duration: 1 }}
             className="mt-4 text-lg md:text-2xl max-w-3xl text-lol-gold-light/90 text-shadow-md"
           >
-          La plataforma definitiva que fusiona la astrologia con la IA, y analiticas oficiales, para darte coaching en tiempo real, clips virales y una ventaja estratégica
+            La plataforma definitiva que fusiona tu signo zodiacal con la IA para darte coaching en tiempo real, clips virales y una ventaja estratégica única.
           </motion.p>
           <motion.div
             initial={{ scale: 0 }}

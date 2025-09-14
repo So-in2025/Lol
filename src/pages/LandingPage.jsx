@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar } from 'react-icons/fa';
-// El componente EpicButton vive en este mismo archivo, así que no se importa
-// import EpicButton from '../components/EpicButton'; 
+import EpicButton from '../components/EpicButton';
 import YouTubePlayer from '../components/YouTubePlayer';
 
-// ===== AQUÍ ESTÁ LA CORRECCIÓN =====
-// Se agregan "...props" para que el componente acepte cualquier propiedad adicional (como onClick)
-// y se pasa al <motion.button>
+// Definimos EpicButton aquí para que esté todo en un solo lugar y funcione
 const EpicButton = ({ children, className, ...props }) => {
   return (
     <motion.button
@@ -19,9 +16,8 @@ const EpicButton = ({ children, className, ...props }) => {
         transition-all duration-300
         relative group ${className}
       `}
-      {...props} // <--- CAMBIO CLAVE AQUÍ
+      {...props}
     >
-      {/* Esquinas y bordes para el efecto "Hextech" */}
       <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
       <span className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
       <span className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
@@ -30,7 +26,6 @@ const EpicButton = ({ children, className, ...props }) => {
     </motion.button>
   );
 };
-
 
 export default function LandingPage() {
   const [siteEntered, setSiteEntered] = useState(false);
@@ -97,7 +92,7 @@ export default function LandingPage() {
             transition={{ delay: 1, duration: 1 }}
             className="mt-4 text-lg md:text-2xl max-w-3xl text-lol-gold-light/90 text-shadow-md"
           >
-            La plataforma definitiva que fusiona tu signo zodiacal con la IA para darte coaching en tiempo real, clips virales y una ventaja estratégica única.
+          La plataforma definitiva que fusiona la astrologia con la IA, y analiticas oficiales, para darte coaching en tiempo real, clips virales y una ventaja estratégica
           </motion.p>
           <motion.div
             initial={{ scale: 0 }}
@@ -209,8 +204,3 @@ export default function LandingPage() {
     </AnimatePresence>
   );
 }
-
-// NOTA: Moví el componente EpicButton arriba de LandingPage por si acaso, 
-// y saqué la importación de YouTubePlayer de arriba ya que no estaba. 
-// Ah, y el EpicButton sí estaba definido en el mismo archivo, 
-// así que eliminé la importación comentada. Todo lo demás está igual.

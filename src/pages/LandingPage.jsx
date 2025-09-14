@@ -1,42 +1,20 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-// CAMBIO: Se agregan los íconos para el nuevo footer (Facebook y Globo/Web)
-import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe } from 'react-icons/fa';
-
-// Componente reutilizable para los botones con estilo LoL
-const EpicButton = ({ children, className }) => {
-  return (
-    <motion.button
-      whileHover={{ scale: 1.05, filter: 'brightness(1.2)' }}
-      whileTap={{ scale: 0.95 }}
-      className={`
-        px-10 py-3 bg-lol-blue-medium text-lol-gold-light font-display font-bold uppercase tracking-wider
-        border-2 border-lol-gold hover:border-lol-blue-accent
-        transition-all duration-300
-        relative group ${className}
-      `}
-    >
-      {/* Esquinas y bordes para el efecto "Hextech" */}
-      <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
-      <span className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
-      <span className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
-      <span className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
-      {children}
-    </motion.button>
-  );
-};
+// CAMBIO: Se agregan íconos para la nueva sección (Check y Estrella)
+import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar } from 'react-icons/fa';
+import EpicButton from '../components/EpicButton';
 
 export default function LandingPage() {
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
-    { title: 'Coach en Tiempo Real', desc: 'Obtén análisis en vivo de tus aliados y enemigos. Descubre sinergias, puntos débiles del rival y consejos estratégicos para dominar la partida.', icon: <FaCrosshairs /> },
+    // CAMBIO: Descripción del Coach actualizada para incluir el análisis por signo.
+    { title: 'Coach en Tiempo Real', desc: 'Analiza en vivo a tus aliados y enemigos, usando incluso su signo zodiacal para predecir su estilo de juego y darte consejos estratégicos únicos.', icon: <FaCrosshairs /> },
     { title: 'Skins Zodiacales', desc: 'Eleva tu stream con overlays y animaciones premium. Haz que tus clips luzcan únicos con un branding zodiacal profesional y personalizado.', icon: <FaPalette /> },
     { title: 'TTS Narrativo', desc: 'Escucha tus mejores jugadas narradas por una IA con voz profesional, totalmente sincronizada con la acción para un efecto increíble.', icon: <FaMicrophoneAlt /> },
     { title: 'Clips Automáticos', desc: 'La IA detecta tus jugadas clave y genera clips virales listos para TikTok y YouTube, con tu branding y la narración épica incluidas.', icon: <FaFilm /> },
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
 
-  // CAMBIO: URL del video actualizada para permitir sonido y mostrar controles.
   const videoUrl = "https://www.youtube.com/embed/aR-KAldshAE?autoplay=1&loop=1&playlist=aR-KAldshAE&showinfo=0&modestbranding=1";
 
   return (
@@ -53,7 +31,6 @@ export default function LandingPage() {
         >
           LoL MetaMind
         </motion.h1>
-        {/* CAMBIO: Texto del subtítulo mejorado para ser más atractivo */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -95,7 +72,7 @@ export default function LandingPage() {
               <iframe
                 className="w-full h-full"
                 src={videoUrl}
-                title="Video Promocional"
+                title="Video Promocional LoL MetaMind"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
@@ -115,7 +92,6 @@ export default function LandingPage() {
         >
           Funcionalidades Épicas
         </motion.h2>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {features.map((feature, idx) => (
             <motion.div
@@ -134,6 +110,63 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ===== NUEVA SECCIÓN: FREE VS PREMIUM ===== */}
+      <section className="py-20 px-4 bg-lol-blue-dark">
+        <motion.h2
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="text-4xl md:text-6xl font-display font-bold text-center text-lol-gold mb-16 text-shadow-md"
+        >
+          Elegí Tu Arsenal
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          {/* Columna Free */}
+          <motion.div 
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1 }}
+            className="bg-lol-blue-medium p-8 border-2 border-lol-gold-dark flex flex-col"
+          >
+            <h3 className="text-3xl font-display font-bold text-lol-gold-light mb-4">Plan Gratuito</h3>
+            <p className="text-lol-gold-light/70 mb-8">Perfecto para empezar a explorar tu potencial astrológico.</p>
+            <ul className="space-y-4 text-lg">
+              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Recomendador de Campeón</li>
+              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Perfil Zodiacal Básico</li>
+              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> Clips con marca de agua</li>
+              <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> TTS con voz estándar</li>
+            </ul>
+          </motion.div>
+          {/* Columna Premium */}
+          <motion.div 
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="bg-lol-blue-medium p-8 border-2 border-lol-blue-accent relative flex flex-col"
+            style={{ boxShadow: '0 0 25px rgba(11, 198, 227, 0.5)' }}
+          >
+            <div className="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-lol-blue-accent text-lol-blue-dark font-bold font-display px-4 py-1 text-sm uppercase tracking-widest">
+              <FaStar className="inline-block mr-2" />
+              Más Popular
+            </div>
+            <h3 className="text-3xl font-display font-bold text-lol-blue-accent mb-4">Plan Premium</h3>
+            <p className="text-lol-gold-light/70 mb-8">Desata todo el poder de MetaMind y domina la grieta.</p>
+            <ul className="space-y-4 text-lg">
+                <li className="flex items-start gap-3"><FaCheckCircle className="text-lol-blue-accent mt-1 flex-shrink-0" /> <div><strong className="text-lol-gold-light">Todo lo del Plan Gratuito,</strong> y además:</div></li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Coach en Tiempo Real Avanzado</strong></li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Skins y Overlays Zodiacales</strong></li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Clips Ilimitados sin marca</strong></li>
+                <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">TTS con Voz Profesional</strong></li>
+            </ul>
+          </motion.div>
+        </div>
+      </section>
+      {/* ========================================= */}
+
+
       <section className="py-20 px-4 bg-lol-blue-dark/80 text-center bg-cover bg-center" style={{ backgroundImage: "linear-gradient(rgba(10, 20, 40, 0.8), rgba(10, 20, 40, 0.9)), url('/img/background.jpg')"}}>
         <motion.h2
           initial={{ scale: 0.8, opacity: 0 }}
@@ -144,7 +177,6 @@ export default function LandingPage() {
         >
           Elevá tu Juego Hoy
         </motion.h2>
-        {/* CAMBIO: Texto del llamado a la acción más enfocado en el beneficio del usuario */}
         <motion.p
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -157,7 +189,6 @@ export default function LandingPage() {
         <EpicButton>Registrate Gratis</EpicButton>
       </section>
 
-      {/* CAMBIO: Footer profesional con tus enlaces y datos */}
       <footer className="py-8 bg-lol-blue-dark text-center text-lol-gold-light/70 border-t border-lol-gold-dark">
         <div className="flex justify-center items-center gap-6 mb-4">
             <a href="https://www.facebook.com/SolucionesSOIN" target="_blank" rel="noopener noreferrer" className="hover:text-lol-blue-accent transition-colors">

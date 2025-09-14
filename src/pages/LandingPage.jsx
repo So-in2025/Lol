@@ -56,7 +56,8 @@ export default function LandingPage() {
           transition={{ duration: 1 }}
           className="text-4xl md:text-6xl font-display font-bold text-center mb-12 text-lol-gold text-shadow-md"
         >
-          Mirá el Poder de MetaMind
+          Así se Ve la Gloria
+
         </motion.h2>
         <div className="flex justify-center">
           <motion.div

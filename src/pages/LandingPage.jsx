@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react'; // CAMBIO: Se quita useState y se agrega useEffect, useRef
 import { motion } from 'framer-motion';
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar } from 'react-icons/fa';
 import EpicButton from '../components/EpicButton';
-import YouTubePlayer from '../components/YouTubePlayer';
+// CAMBIO: Ya no se importa YouTubePlayer
 
 export default function LandingPage() {
   const features = [
@@ -13,6 +13,40 @@ export default function LandingPage() {
     { title: 'Clips Automáticos', desc: 'La IA detecta tus jugadas clave y genera clips virales listos para TikTok y YouTube, con tu branding y la narración épica incluidas.', icon: <FaFilm /> },
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
+
+  // CAMBIO: Lógica para controlar el video al hacer scroll
+  const videoRef = useRef(null);
+  const videoUrl = "https://www.youtube.com/embed/NolHvXjZA4A?enablejsapi=1&loop=1&playlist=NolHvXjZA4A&modestbranding=1";
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        const iframe = videoRef.current?.querySelector('iframe');
+        if (!iframe) return;
+
+        if (entry.isIntersecting) {
+          // El video está en pantalla: agregar autoplay para que inicie (muteado por el navegador)
+          iframe.src = `${videoUrl}&autoplay=1&mute=1`; 
+        } else {
+          // El video ya no está en pantalla: quitar el src para detenerlo
+          iframe.src = videoUrl;
+        }
+      },
+      { threshold: 0.5 } // Se activa cuando el 50% del video es visible
+    );
+
+    if (videoRef.current) {
+      observer.observe(videoRef.current);
+    }
+
+    return () => {
+      if (videoRef.current) {
+        observer.unobserve(videoRef.current);
+      }
+    };
+  }, [videoUrl]);
+
 
   return (
     <div className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.jpg')] bg-cover bg-center bg-fixed">
@@ -62,11 +96,23 @@ export default function LandingPage() {
             whileInView={{ scale: 1, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2 }}
-            className="w-full max-w-4xl overflow-hidden shadow-2xl border-4 border-lol-gold-dark"
-            style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
+            className="w-full max-w-4xl" // Se quita overflow-hidden para no cortar la sombra
           >
-            {/* Se reemplaza el iframe por nuestro nuevo componente interactivo */}
-            <YouTubePlayer videoId="NolHvXjZA4A" />
+            {/* CAMBIO: Nueva estructura para el video con estilo redondeado y control de scroll */}
+            <div 
+              ref={videoRef} 
+              className="aspect-w-16 aspect-h-9 shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden"
+              style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
+            >
+              <iframe
+                className="w-full h-full"
+                src={videoUrl}
+                title="Video Promocional Inspirador"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
           </motion.div>
         </div>
       </section>

@@ -4,34 +4,12 @@ import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, Fa
 import EpicButton from '../components/EpicButton';
 import YouTubePlayer from '../components/YouTubePlayer';
 
-const EpicButton = ({ children, className, ...props }) => {
-  return (
-    <motion.button
-      whileHover={{ scale: 1.05, filter: 'brightness(1.2)' }}
-      whileTap={{ scale: 0.95 }}
-      className={`
-        px-10 py-3 bg-lol-blue-medium text-lol-gold-light font-display font-bold uppercase tracking-wider
-        border-2 border-lol-gold hover:border-lol-blue-accent
-        transition-all duration-300
-        relative group ${className}
-      `}
-      {...props}
-    >
-      <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
-      <span className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
-      <span className="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
-      <span className="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
-      {children}
-    </motion.button>
-  );
-};
-
 export default function LandingPage() {
   const [siteEntered, setSiteEntered] = useState(false);
 
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
-    { title: 'Análisis de Partida 360°', desc: 'Obtén una ventaja total con análisis pre-partida, consejos en vivo y reportes post-partida para entender a fondo tus fortalezas y debilidades.', icon: <FaCrosshairs /> },
+    { title: 'Análisis de Partida 306°', desc: 'Obtén una ventaja total con análisis pre-partida, consejos en vivo y reportes post-partida para entender a fondo tus fortalezas y debilidades.', icon: <FaCrosshairs /> },
     { title: 'Overlays Inteligentes', desc: 'Transforma tu stream con overlays que te narran consejos y planes de juego en tiempo real para que no quites la vista de la acción.', icon: <FaPalette /> },
     { title: 'TTS Narrativo', desc: 'Inmortaliza tus jugadas. Nuestra IA genera una narración épica y sincronizada para tus clips virales, convirtiendo cada highlight en una leyenda.', icon: <FaMicrophoneAlt /> },
     { title: 'Clips Automáticos', desc: 'La IA detecta tus jugadas clave y genera clips virales listos para TikTok y YouTube, con tu branding y la narración épica incluidas.', icon: <FaFilm /> },

@@ -28,12 +28,12 @@ const EpicButton = ({ children, className }) => {
 
 export default function LandingPage() {
   const features = [
-    { title: 'Recomendador IA', desc: 'Descubrí tu campeón ideal según tu personalidad y arquetipo de juego.', icon: <FaBrain /> },
-    { title: 'Coach en Tiempo Real', desc: 'Análisis de enfrentamientos, builds y rutas de jungla al instante.', icon: <FaCrosshairs /> },
-    { title: 'Skins Zodiacales', desc: 'Overlays y animaciones premium para tus streams y clips.', icon: <FaPalette /> },
-    { title: 'TTS Narrativo', desc: 'Narración por IA con voz épica para tus mejores jugadas.', icon: <FaMicrophoneAlt /> },
-    { title: 'Clips Automáticos', desc: 'Genera clips listos para TikTok y YouTube sin esfuerzo.', icon: <FaFilm /> },
-    { title: 'Gamificación y Rankings', desc: 'Competí en rankings, completá retos y ganá logros únicos.', icon: <FaTrophy /> }
+    { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
+    { title: 'Coach en Tiempo Real', desc: 'Obtén análisis en vivo de tus aliados y enemigos. Descubre sinergias, puntos débiles del rival y consejos estratégicos para dominar la partida.', icon: <FaCrosshairs /> },
+    { title: 'Skins Zodiacales', desc: 'Eleva tu stream con overlays y animaciones premium. Haz que tus clips luzcan únicos con un branding zodiacal profesional y personalizado.', icon: <FaPalette /> },
+    { title: 'TTS Narrativo', desc: 'Escucha tus mejores jugadas narradas por una IA con voz profesional, totalmente sincronizada con la acción para un efecto increíble.', icon: <FaMicrophoneAlt /> },
+    { title: 'Clips Automáticos', desc: 'La IA detecta tus jugadas clave y genera clips virales listos para TikTok y YouTube, con tu branding y la narración épica incluidas.', icon: <FaFilm /> },
+    { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
 
   return (

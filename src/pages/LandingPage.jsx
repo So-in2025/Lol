@@ -1,5 +1,3 @@
-// src/pages/LandingPage.jsx
-
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar, FaPlayCircle } from 'react-icons/fa';
@@ -117,7 +115,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               ) : (
-                <VideoPlayer src="/promo.mp4" shouldPlay={siteEntered} />
+                <VideoPlayer src="/promo.mp4" />
               )}
             </motion.div>
           </div>

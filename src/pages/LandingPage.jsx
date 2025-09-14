@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar, FaPlayCircle } from 'react-icons/fa';
 import EpicButton from '../components/EpicButton';
-import YouTubePlayer from '../components/YouTubePlayer';
+import VideoPlayer from '../components/VideoPlayer';
 
 export default function LandingPage() {
   const [siteEntered, setSiteEntered] = useState(false);
@@ -60,7 +60,7 @@ export default function LandingPage() {
         transition={{ duration: 0.8 }}
         className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.webp')] bg-cover bg-center bg-fixed"
       >
-        <section 
+        <section
           className="relative h-screen flex flex-col justify-center items-center text-center px-4 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: "linear-gradient(rgba(1, 10, 19, 0.7), rgba(1, 10, 19, 0.9)), url('/img/hero-bg.webp')" }}
         >
@@ -106,7 +106,7 @@ export default function LandingPage() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
-              className="w-full max-w-4xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl"
+              className="w-full max-w-4xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl flex justify-center"
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
             >
               {!loadVideo ? (
@@ -117,7 +117,7 @@ export default function LandingPage() {
                   </div>
                 </div>
               ) : (
-                <YouTubePlayer videoId="NolHvX-jZA4A" shouldPlay={siteEntered} />
+                <VideoPlayer src="/promo.mp4" shouldPlay={siteEntered} />
               )}
             </motion.div>
           </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar } from 'react-icons/fa';
 import EpicButton from '../components/EpicButton';
+import YouTubePlayer from '../components/YouTubePlayer';
 
 export default function LandingPage() {
   const features = [
@@ -12,9 +13,6 @@ export default function LandingPage() {
     { title: 'Clips Automáticos', desc: 'La IA detecta tus jugadas clave y genera clips virales listos para TikTok y YouTube, con tu branding y la narración épica incluidas.', icon: <FaFilm /> },
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
-
-  // ===== CAMBIO: Se actualiza la URL del video por la nueva =====
-  const videoUrl = "https://www.youtube.com/embed/NolHvXjZA4A?autoplay=1&loop=1&playlist=NolHvXjZA4A&showinfo=0&modestbranding=1";
 
   return (
     <div className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.jpg')] bg-cover bg-center bg-fixed">
@@ -57,7 +55,6 @@ export default function LandingPage() {
           className="text-4xl md:text-6xl font-display font-bold text-center mb-12 text-lol-gold text-shadow-md"
         >
           Así se Ve la Gloria
-
         </motion.h2>
         <div className="flex justify-center">
           <motion.div
@@ -68,16 +65,8 @@ export default function LandingPage() {
             className="w-full max-w-4xl overflow-hidden shadow-2xl border-4 border-lol-gold-dark"
             style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
           >
-            <div className="aspect-w-16 aspect-h-9">
-              <iframe
-                className="w-full h-full"
-                src={videoUrl}
-                title="Video Promocional LoL MetaMind"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </div>
+            {/* Se reemplaza el iframe por nuestro nuevo componente interactivo */}
+            <YouTubePlayer videoId="NolHvXjZA4A" />
           </motion.div>
         </div>
       </section>

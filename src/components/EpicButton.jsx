@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const EpicButton = ({ children, className }) => {
+export default function EpicButton({ children, className, ...props }) {
   return (
     <motion.button
       whileHover={{ scale: 1.05, filter: 'brightness(1.2)' }}
@@ -12,6 +12,7 @@ const EpicButton = ({ children, className }) => {
         transition-all duration-300
         relative group ${className}
       `}
+      {...props}
     >
       <span className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
       <span className="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-lol-gold group-hover:border-lol-blue-accent transition-all duration-300"></span>
@@ -21,5 +22,3 @@ const EpicButton = ({ children, className }) => {
     </motion.button>
   );
 };
-
-export default EpicButton;

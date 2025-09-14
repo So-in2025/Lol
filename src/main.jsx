@@ -1,13 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import './fonts.css' // <-- AÑADE ESTA LÍNEA
+import './fonts/fonts.css' // <-- AQUÍ ESTÁ LA CORRECCIÓN
 import './index.css'
-import { Analytics } from '@vercel/analytics/react'; // <-- AÑADE ESTA LÍNEA
+import { Analytics } from '@vercel/analytics/react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
-    <Analytics /> {/* <-- AÑADE ESTA LÍNEA */}
+    <Analytics />
   </React.StrictMode>,
 )

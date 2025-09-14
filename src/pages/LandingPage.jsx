@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-// Opcional: para íconos en las tarjetas de funcionalidades
-import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy } from 'react-icons/fa';
+// CAMBIO: Se agregan los íconos para el nuevo footer (Facebook y Globo/Web)
+import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe } from 'react-icons/fa';
 
 // Componente reutilizable para los botones con estilo LoL
 const EpicButton = ({ children, className }) => {
@@ -36,10 +36,11 @@ export default function LandingPage() {
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
 
+  // CAMBIO: URL del video actualizada para permitir sonido y mostrar controles.
+  const videoUrl = "https://www.youtube.com/embed/aR-KAldshAE?autoplay=1&loop=1&playlist=aR-KAldshAE&showinfo=0&modestbranding=1";
+
   return (
-    // CAMBIO: Fondo texturizado oscuro en lugar de gradiente. bg-fixed da un efecto parallax.
     <div className="min-h-screen bg-lol-blue-dark text-lol-gold-light font-body overflow-x-hidden bg-[url('/img/background.jpg')] bg-cover bg-center bg-fixed">
-      {/* Hero Section - AHORA CON IMAGEN DE CAMPEÓN DE FONDO */}
       <section 
         className="relative h-screen flex flex-col justify-center items-center text-center px-4 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "linear-gradient(rgba(1, 10, 19, 0.7), rgba(1, 10, 19, 0.9)), url('/img/hero-bg.jpg')" }}
@@ -48,18 +49,18 @@ export default function LandingPage() {
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          // CAMBIO: Tipografía y sombra de texto épica
           className="text-6xl md:text-8xl font-display font-extrabold text-lol-gold-light text-shadow-lg"
         >
           LoL MetaMind
         </motion.h1>
+        {/* CAMBIO: Texto del subtítulo mejorado para ser más atractivo */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 1 }}
           className="mt-4 text-lg md:text-2xl max-w-3xl text-lol-gold-light/90 text-shadow-md"
         >
-          Tu asistente de League of Legends con IA, astrología y estrategia en tiempo real. Descubrí tu campeón ideal y llevá tu juego al siguiente nivel.
+          La plataforma definitiva que fusiona tu signo zodiacal con la IA para darte coaching en tiempo real, clips virales y una ventaja estratégica única.
         </motion.p>
         <motion.div
           initial={{ scale: 0 }}
@@ -71,7 +72,6 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* ===== VIDEO PROMO SECTION MODIFICADA ===== */}
       <section className="py-20 px-4 bg-lol-blue-dark/80 backdrop-blur-sm">
         <motion.h2
           initial={{ x: -100, opacity: 0 }}
@@ -91,11 +91,10 @@ export default function LandingPage() {
             className="w-full max-w-4xl overflow-hidden shadow-2xl border-4 border-lol-gold-dark"
             style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
           >
-            {/* AQUÍ ESTÁ EL CAMBIO: Se reemplaza <video> por <iframe> de YouTube */}
             <div className="aspect-w-16 aspect-h-9">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/embed/aR-KAldshAE?autoplay=1&mute=1&loop=1&playlist=aR-KAldshAE&controls=0&showinfo=0&modestbranding=1"
+                src={videoUrl}
                 title="Video Promocional"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -105,9 +104,7 @@ export default function LandingPage() {
           </motion.div>
         </div>
       </section>
-      {/* ========================================= */}
 
-      {/* Features Section */}
       <section className="py-20 px-4 bg-lol-blue-dark">
         <motion.h2
           initial={{ y: 50, opacity: 0 }}
@@ -127,7 +124,6 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: idx * 0.1 }}
-              // CAMBIO: Tarjetas más angulares, con fondo oscuro y borde dorado
               className="bg-lol-blue-medium p-6 border-2 border-lol-gold-dark hover:border-lol-blue-accent transition-colors duration-300 flex flex-col items-center text-center"
             >
               <div className="text-4xl text-lol-blue-accent mb-4">{feature.icon}</div>
@@ -138,7 +134,6 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Call to Action Section */}
       <section className="py-20 px-4 bg-lol-blue-dark/80 text-center bg-cover bg-center" style={{ backgroundImage: "linear-gradient(rgba(10, 20, 40, 0.8), rgba(10, 20, 40, 0.9)), url('/img/background.jpg')"}}>
         <motion.h2
           initial={{ scale: 0.8, opacity: 0 }}
@@ -149,6 +144,7 @@ export default function LandingPage() {
         >
           Elevá tu Juego Hoy
         </motion.h2>
+        {/* CAMBIO: Texto del llamado a la acción más enfocado en el beneficio del usuario */}
         <motion.p
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -156,14 +152,23 @@ export default function LandingPage() {
           transition={{ duration: 1, delay: 0.2 }}
           className="text-lol-gold-light/90 text-lg md:text-2xl mb-10 max-w-3xl mx-auto text-shadow-md"
         >
-          Sumate a la experiencia más épica de League of Legends: IA, astrología y estrategia profesional al alcance de tu mouse.
+          Dejá de adivinar. Empezá a dominar. Uníte a la revolución de estrategia y contenido con el poder de la IA y la astrología.
         </motion.p>
         <EpicButton>Registrate Gratis</EpicButton>
       </section>
 
-      {/* Footer */}
+      {/* CAMBIO: Footer profesional con tus enlaces y datos */}
       <footer className="py-8 bg-lol-blue-dark text-center text-lol-gold-light/70 border-t border-lol-gold-dark">
-        &copy; {new Date().getFullYear()} SOIN Soluciones Informáticas. Todos los derechos reservados.
+        <div className="flex justify-center items-center gap-6 mb-4">
+            <a href="https://www.facebook.com/SolucionesSOIN" target="_blank" rel="noopener noreferrer" className="hover:text-lol-blue-accent transition-colors">
+                <FaFacebook size={28} />
+            </a>
+            <a href="https://websoin.netlify.app/" target="_blank" rel="noopener noreferrer" className="hover:text-lol-blue-accent transition-colors">
+                <FaGlobe size={28} />
+            </a>
+        </div>
+        <p>Un proyecto de <strong>SO-&gt;IN Soluciones Informáticas</strong></p>
+        <p>&copy; {new Date().getFullYear()} Todos los derechos reservados.</p>
       </footer>
     </div>
   );

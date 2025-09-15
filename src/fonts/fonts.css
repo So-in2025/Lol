@@ -1,47 +1,5 @@
 /* src/fonts.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Roboto:wght@400;700&display=swap');
 
-/* cinzel-regular - latin */
-@font-face {
-  font-display: swap; 
-  font-family: 'Cinzel';
-  font-style: normal;
-  font-weight: 400; /* Asumo que 'regular' es peso 400 */
-  src: url('/fonts/cinzel-v25-latin-regular.woff2') format('woff2'); 
-}
-
-/* cinzel-700 - latin */
-@font-face {
-  font-display: swap; 
-  font-family: 'Cinzel';
-  font-style: normal;
-  font-weight: 700;
-  /* El navegador usará 'regular' y lo hará más grueso si no encuentra este archivo específico */
-  src: url('/fonts/cinzel-v25-latin-regular.woff2') format('woff2'); 
-}
-/* cinzel-900 - latin */
-@font-face {
-  font-display: swap; 
-  font-family: 'Cinzel';
-  font-style: normal;
-  font-weight: 900;
-  /* El navegador usará 'regular' y lo hará más grueso si no encuentra este archivo específico */
-  src: url('/fonts/cinzel-v25-latin-regular.woff2') format('woff2'); 
-}
-
-/* roboto-400 (regular) - latin */
-@font-face {
-  font-display: swap; 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 400;
-  src: url('/fonts/roboto-v48-latin-regular.woff2') format('woff2');
-}
-/* roboto-700 (bold) - latin */
-@font-face {
-  font-display: swap; 
-  font-family: 'Roboto';
-  font-style: normal;
-  font-weight: 700;
-   /* El navegador usará 'regular' y lo hará más grueso si no encuentra este archivo específico */
-  src: url('/fonts/roboto-v48-latin-regular.woff2') format('woff2');
-}
+/* La importación de Google Fonts es la forma más robusta de asegurar que las fuentes se carguen correctamente. */
+/* No es necesario tener los archivos de fuente locales. */

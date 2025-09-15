@@ -1,7 +1,7 @@
 import React from 'react';
 import YouTube from 'react-youtube';
 
-export default function VideoPlayer({ videoId }) {
+export default function VideoPlayer({ videoId, isMuted }) {
   const opts = {
     height: '100%',
     width: '100%',
@@ -11,6 +11,7 @@ export default function VideoPlayer({ videoId }) {
       rel: 0, // No muestra videos relacionados al final
       controls: 0, // Elimina los controles visibles
       enablejsapi: 1,
+      mute: isMuted ? 1 : 0,
     },
   };
 

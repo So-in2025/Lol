@@ -6,8 +6,11 @@ import VideoPlayer from '../components/VideoPlayer';
 
 export default function LandingPage() {
   const [siteEntered, setSiteEntered] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
+  const [loadVideo, setLoadVideo] = useState(false);
+
   const videoRef = useRef(null);
+  const videoContainerRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
@@ -24,22 +27,36 @@ export default function LandingPage() {
     setSiteEntered(true);
   };
   
+  // Lógica para reproducir/pausar con el scroll
+  useEffect(() => {
+    const player = videoRef.current;
+    if (player) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            player.playVideo();
+          } else {
+            player.pauseVideo();
+          }
+        },
+        { threshold: 0.5 }
+      );
+      observer.observe(videoContainerRef.current);
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [siteEntered, loadVideo]);
+
+  // Lógica para el botón de sonido
   const toggleMute = () => {
     if (videoRef.current) {
-        if (isMuted) {
-            videoRef.current.unMute();
-        } else {
-            videoRef.current.mute();
-        }
-        setIsMuted(!isMuted);
-    }
-  };
-  
-  const onPlayerReady = (event) => {
-    videoRef.current = event.target;
-    // Autoplay con sonido si el usuario ya interactuó
-    if (siteEntered) {
-        event.target.playVideo();
+      if (isMuted) {
+        videoRef.current.unMute();
+      } else {
+        videoRef.current.mute();
+      }
+      setIsMuted(!isMuted);
     }
   };
 
@@ -126,20 +143,19 @@ export default function LandingPage() {
               transition={{ duration: 1.2 }}
               className="w-full max-w-2xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden flex justify-center"
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
+              ref={videoContainerRef}
             >
-                <div className="relative w-full">
-                    <VideoPlayer
-                        videoId="NolHvXjZA4A"
-                        onReady={onPlayerReady}
-                        isMuted={isMuted}
-                    />
-                    <button
-                        onClick={toggleMute}
-                        className="absolute bottom-4 right-4 p-2 bg-lol-blue-medium/70 rounded-full text-lol-gold-light hover:bg-lol-blue-medium transition-colors"
-                    >
-                        {isMuted ? <FaVolumeMute size={24} /> : <FaVolumeUp size={24} />}
-                    </button>
-                </div>
+              <div className="relative w-full aspect-w-16 aspect-h-9">
+                <VideoPlayer
+                  videoId="NolHvXjZA4A"
+                />
+                <button
+                    onClick={toggleMute}
+                    className="absolute bottom-4 right-4 p-2 bg-lol-blue-medium/70 rounded-full text-lol-gold-light hover:bg-lol-blue-medium transition-colors"
+                >
+                    {isMuted ? <FaVolumeMute size={24} /> : <FaVolumeUp size={24} />}
+                </button>
+              </div>
             </motion.div>
           </div>
         </section>

@@ -144,7 +144,7 @@ export default function LandingPage() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
-              className="w-full max-w-3xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden flex justify-center"
+              className="w-full max-w-3x2 shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden flex justify-center"
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
               ref={videoContainerRef}
             >

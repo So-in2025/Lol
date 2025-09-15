@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar, FaPlayCircle, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import EpicButton from '../components/EpicButton';
@@ -6,7 +6,8 @@ import VideoPlayer from '../components/VideoPlayer';
 
 export default function LandingPage() {
   const [siteEntered, setSiteEntered] = useState(false);
-  const [loadVideo, setLoadVideo] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef(null);
 
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
@@ -21,6 +22,25 @@ export default function LandingPage() {
     const audio = new Audio('/welcome.mp3');
     audio.play();
     setSiteEntered(true);
+  };
+  
+  const toggleMute = () => {
+    if (videoRef.current) {
+        if (isMuted) {
+            videoRef.current.unMute();
+        } else {
+            videoRef.current.mute();
+        }
+        setIsMuted(!isMuted);
+    }
+  };
+  
+  const onPlayerReady = (event) => {
+    videoRef.current = event.target;
+    // Autoplay con sonido si el usuario ya interactuó
+    if (siteEntered) {
+        event.target.playVideo();
+    }
   };
 
   if (!siteEntered) {
@@ -107,16 +127,19 @@ export default function LandingPage() {
               className="w-full max-w-2xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden flex justify-center"
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
             >
-              {!loadVideo ? (
-                <div onClick={() => setLoadVideo(true)} className="relative w-full aspect-w-16 aspect-h-9 cursor-pointer group">
-                  <img src="/img/hero-bg.webp" alt="Video Thumbnail" className="w-full h-full object-cover rounded-3xl" loading="lazy" />
-                  <div className="absolute inset-0 bg-black/40 flex justify-center items-center transition-opacity duration-300 group-hover:opacity-100 opacity-80">
-                    <FaPlayCircle className="text-white text-7xl md:text-9xl transform transition-transform duration-300 group-hover:scale-110" />
-                  </div>
+                <div className="relative w-full">
+                    <VideoPlayer
+                        videoId="NolHvXjZA4A"
+                        onReady={onPlayerReady}
+                        isMuted={isMuted}
+                    />
+                    <button
+                        onClick={toggleMute}
+                        className="absolute bottom-4 right-4 p-2 bg-lol-blue-medium/70 rounded-full text-lol-gold-light hover:bg-lol-blue-medium transition-colors"
+                    >
+                        {isMuted ? <FaVolumeMute size={24} /> : <FaVolumeUp size={24} />}
+                    </button>
                 </div>
-              ) : (
-                <VideoPlayer src="/promo.mp4" />
-              )}
             </motion.div>
           </div>
         </section>

@@ -1,69 +1,27 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
+import YouTube from 'react-youtube';
 
-export default function VideoPlayer({ src, className = "" }) {
-  const videoRef = useRef(null);
-  const [error, setError] = useState(false);
-  const [isMuted, setIsMuted] = useState(true);
-
-  useEffect(() => {
-    if (videoRef.current) {
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              videoRef.current.play().catch(e => {
-                console.error("Error playing video:", e);
-                setError(true);
-              });
-            } else {
-              videoRef.current.pause();
-            }
-          });
-        },
-        {
-          threshold: 0.5, // El video se reproduce cuando el 50% es visible
-        }
-      );
-
-      observer.observe(videoRef.current);
-
-      return () => {
-        observer.disconnect();
-      };
-    }
-  }, [src]);
-
-  const toggleMute = () => {
-    setIsMuted(!isMuted);
+export default function VideoPlayer({ videoId, onReady, isMuted }) {
+  const opts = {
+    height: '100%',
+    width: '100%',
+    playerVars: {
+      autoplay: 1,
+      modestbranding: 1,
+      rel: 0,
+      mute: isMuted ? 1 : 0,
+    },
   };
 
   return (
-    <>
-      {error ? (
-        <div className="absolute inset-0 bg-lol-blue-medium flex items-center justify-center text-lol-gold-light text-center p-4 rounded-3xl">
-          <p>El video no se pudo cargar. Por favor, asegúrate de que el archivo `promo.mp4` esté en el directorio `public/`.</p>
-        </div>
-      ) : (
-        <>
-          <video
-            ref={videoRef}
-            src={src}
-            controls
-            loop
-            muted={isMuted}
-            playsInline
-            onError={() => setError(true)}
-            className="w-full h-full object-cover rounded-3xl"
-          ></video>
-          <button
-            onClick={toggleMute}
-            className="absolute bottom-4 right-4 p-2 bg-lol-blue-medium/70 rounded-full text-lol-gold-light hover:bg-lol-blue-medium transition-colors"
-          >
-            {isMuted ? <FaVolumeMute size={24} /> : <FaVolumeUp size={24} />}
-          </button>
-        </>
-      )}
-    </>
+    <div className="relative pt-[56.25%] w-full">
+      <YouTube
+        videoId={videoId}
+        opts={opts}
+        onReady={onReady}
+        className="absolute top-0 left-0 w-full h-full"
+        iframeClassName="w-full h-full rounded-3xl"
+      />
+    </div>
   );
 }

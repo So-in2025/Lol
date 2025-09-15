@@ -33,7 +33,7 @@ export default function VideoPlayer({ src, className = "" }) {
   }, [src]);
 
   return (
-    <div className={`relative w-full aspect-w-1 aspect-h-1 overflow-hidden ${className}`}> {/* Modificado aquí */}
+    <div className={`relative w-full aspect-w-1 aspect-h-1 overflow-hidden ${className}`}>
       {error ? (
         <div className="absolute inset-0 bg-lol-blue-medium flex items-center justify-center text-lol-gold-light text-center p-4">
           <p>El video no se pudo cargar. Por favor, asegúrate de que el archivo `promo.mp4` esté en el directorio `public/`.</p>
@@ -44,7 +44,6 @@ export default function VideoPlayer({ src, className = "" }) {
           src={src}
           controls
           loop
-          muted
           playsInline
           onError={() => setError(true)}
           className="w-full h-full object-cover"

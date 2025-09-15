@@ -104,7 +104,7 @@ export default function LandingPage() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
-              className="w-full max-w-3xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden flex justify-center"
+              className="w-full max-w-xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden flex justify-center"
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
             >
               {!loadVideo ? (
@@ -163,7 +163,7 @@ export default function LandingPage() {
                     <li className="flex items-start gap-3"><FaCheckCircle className="text-lol-blue-accent mt-1 flex-shrink-0" /> <div><strong className="text-lol-gold-light">Todo lo del Plan Gratuito,</strong> y además:</div></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Builds y Runas Adaptativas</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Consejos Estratégicos en Vivo</strong></li>
-                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Análisis Post-Partida Detallado</strong></li>
+                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-light">Análisis Post-Partida Detallado</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Overlays Inteligentes Animados</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Clips Ilimitados sin marca</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">TTS Pro en Overlay y Clips</strong></li>

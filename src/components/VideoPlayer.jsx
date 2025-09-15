@@ -6,10 +6,10 @@ export default function VideoPlayer({ videoId, onReady, isMuted }) {
     height: '100%',
     width: '100%',
     playerVars: {
-      autoplay: 1,
-      modestbranding: 1,
-      rel: 0,
-      controls: 0,
+      autoplay: 1, // Auto-reproducir
+      modestbranding: 1, // Oculta el logo de YouTube
+      rel: 0, // No muestra videos relacionados al final
+      controls: 0, // Elimina los controles visibles
       enablejsapi: 1,
       mute: isMuted ? 1 : 0,
     },

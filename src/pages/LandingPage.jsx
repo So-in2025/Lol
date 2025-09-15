@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar, FaPlayCircle } from 'react-icons/fa';
+import { FaBrain, FaCrosshairs, FaPalette, FaMicrophoneAlt, FaFilm, FaTrophy, FaFacebook, FaGlobe, FaCheckCircle, FaStar, FaPlayCircle, FaVolumeUp, FaVolumeMute } from 'react-icons/fa';
 import EpicButton from '../components/EpicButton';
 import VideoPlayer from '../components/VideoPlayer';
 
@@ -104,11 +104,11 @@ export default function LandingPage() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
-              className="w-full max-w-4xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden flex justify-center" // max-w-4xl para un video más grande y overflow-hidden para enmarcar el video
+              className="w-full max-w-3xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl overflow-hidden flex justify-center"
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
             >
               {!loadVideo ? (
-                <div onClick={() => setLoadVideo(true)} className="relative w-full aspect-w-1 aspect-h-1 cursor-pointer group">
+                <div onClick={() => setLoadVideo(true)} className="relative w-full aspect-w-16 aspect-h-9 cursor-pointer group">
                   <img src="/img/hero-bg.webp" alt="Video Thumbnail" className="w-full h-full object-cover rounded-3xl" loading="lazy" />
                   <div className="absolute inset-0 bg-black/40 flex justify-center items-center transition-opacity duration-300 group-hover:opacity-100 opacity-80">
                     <FaPlayCircle className="text-white text-7xl md:text-9xl transform transition-transform duration-300 group-hover:scale-110" />

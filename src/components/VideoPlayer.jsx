@@ -1,46 +1,55 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 export default function VideoPlayer({ src, className = "" }) {
   const videoRef = useRef(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            videoRef.current.play();
-          } else {
-            videoRef.current.pause();
-          }
-        });
-      },
-      {
-        threshold: 0.5, // El video se reproduce cuando el 50% es visible
-      }
-    );
-
     if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              videoRef.current.play().catch(e => {
+                console.error("Error playing video:", e);
+                setError(true);
+              });
+            } else {
+              videoRef.current.pause();
+            }
+          });
+        },
+        {
+          threshold: 0.5, // El video se reproduce cuando el 50% es visible
+        }
+      );
 
-    return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
-      }
-    };
-  }, []);
+      observer.observe(videoRef.current);
+
+      return () => {
+        observer.disconnect();
+      };
+    }
+  }, [src]);
 
   return (
-    <div className={`relative w-full aspect-w-16 aspect-h-9 overflow-hidden ${className}`}>
-      <video
-        ref={videoRef}
-        src={src}
-        controls
-        loop
-        muted
-        playsInline
-        className="w-full h-full object-cover"
-      ></video>
+    <div className={`relative w-full aspect-w-1 aspect-h-1 overflow-hidden ${className}`}> {/* Modificado aquí */}
+      {error ? (
+        <div className="absolute inset-0 bg-lol-blue-medium flex items-center justify-center text-lol-gold-light text-center p-4">
+          <p>El video no se pudo cargar. Por favor, asegúrate de que el archivo `promo.mp4` esté en el directorio `public/`.</p>
+        </div>
+      ) : (
+        <video
+          ref={videoRef}
+          src={src}
+          controls
+          loop
+          muted
+          playsInline
+          onError={() => setError(true)}
+          className="w-full h-full object-cover"
+        ></video>
+      )}
     </div>
   );
 }

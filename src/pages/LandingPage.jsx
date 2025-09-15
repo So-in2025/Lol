@@ -12,7 +12,7 @@ export default function LandingPage() {
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
     { title: 'Análisis de Partida 360°', desc: 'Domina cada partida con builds y runas adaptativas, análisis pre-juego, consejos en vivo y reportes post-partida para explotar tus fortalezas.', icon: <FaCrosshairs /> },
     { title: 'Overlays Inteligentes', desc: 'Transforma tu stream con overlays que te narran consejos y planes de juego en tiempo real para que no quites la vista de la acción.', icon: <FaPalette /> },
-    { title: 'TTS Narrativo', desc: 'Inmortaliza tus jugadas. Nuestra IA genera una narración épica y sincronizada para tus clips virales, convirtiendo cada highlight en una leyenda.', icon: <FaMicrophoneAlt /> },
+    { title: 'TTS Narrativo', desc: 'Inmortaliza tus jugadas. Nuestra IA genera una narración épica y sincronizada para tus clips virales, convirtiendo cada highlight en una leyenda.', fun: '', icon: <FaMicrophoneAlt /> },
     { title: 'Clips Automáticos', desc: 'La IA detecta tus jugadas clave y genera clips virales listos para TikTok y YouTube, con tu branding y la narración épica incluidas.', icon: <FaFilm /> },
     { title: 'Gamificación y Rankings', desc: 'Demuestra la supremacía de tu signo. Compite en rankings semanales basados en data oficial de Riot y gana medallas exclusivas.', icon: <FaTrophy /> }
   ];
@@ -104,11 +104,11 @@ export default function LandingPage() {
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 1.2 }}
-              className="w-full max-w-4xl shadow-2xl border-4 border-lol-gold-dark rounded-3xl flex justify-center"
+              className="w-full max-w-md shadow-2xl border-4 border-lol-gold-dark rounded-3xl flex justify-center" // max-w-md para un contenedor más cuadrado
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
             >
               {!loadVideo ? (
-                <div onClick={() => setLoadVideo(true)} className="relative aspect-w-16 aspect-h-9 cursor-pointer group">
+                <div onClick={() => setLoadVideo(true)} className="relative w-full aspect-w-1 aspect-h-1 cursor-pointer group"> {/* aspect-w-1 aspect-h-1 para la miniatura */}
                   <img src="/img/hero-bg.webp" alt="Video Thumbnail" className="w-full h-full object-cover rounded-3xl" loading="lazy" />
                   <div className="absolute inset-0 bg-black/40 flex justify-center items-center transition-opacity duration-300 group-hover:opacity-100 opacity-80">
                     <FaPlayCircle className="text-white text-7xl md:text-9xl transform transition-transform duration-300 group-hover:scale-110" />

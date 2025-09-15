@@ -6,10 +6,11 @@ import VideoPlayer from '../components/VideoPlayer';
 
 export default function LandingPage() {
   const [siteEntered, setSiteEntered] = useState(false);
+  const [loadVideo, setLoadVideo] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
   const videoRef = useRef(null);
   const videoContainerRef = useRef(null);
-
+  
   const features = [
     { title: 'Recomendador IA', desc: 'Recibe recomendaciones de campeón, rol y estilo de juego basadas en tu personalidad y signo zodiacal, con 3 tips clave para empezar a ganar.', icon: <FaBrain /> },
     { title: 'Análisis de Partida 360°', desc: 'Domina cada partida con builds y runas adaptativas, análisis pre-juego, consejos en vivo y reportes post-partida para explotar tus fortalezas.', icon: <FaCrosshairs /> },
@@ -23,28 +24,28 @@ export default function LandingPage() {
     const audio = new Audio('/welcome.mp3');
     audio.play();
     setSiteEntered(true);
+    setLoadVideo(true);
+    setIsMuted(false);
   };
   
-  // Lógica para el botón de sonido
-  const toggleMute = () => {
-    if (videoRef.current) {
-      if (isMuted) {
-        videoRef.current.unMute();
-      } else {
-        videoRef.current.mute();
-      }
-      setIsMuted(!isMuted);
-    }
-  };
-
   const onPlayerReady = (event) => {
     videoRef.current = event.target;
   };
   
-  // Lógica para reproducir/pausar con el scroll
+  const toggleMute = () => {
+    if (videoRef.current) {
+        if (isMuted) {
+            videoRef.current.unMute();
+        } else {
+            videoRef.current.mute();
+        }
+        setIsMuted(!isMuted);
+    }
+  };
+  
   useEffect(() => {
     const player = videoRef.current;
-    if (player) {
+    if (player && siteEntered) {
       const observer = new IntersectionObserver(
         ([entry]) => {
           if (entry.isIntersecting) {
@@ -60,7 +61,34 @@ export default function LandingPage() {
         observer.disconnect();
       };
     }
-  }, [siteEntered]);
+  }, [siteEntered, loadVideo]);
+
+  if (!siteEntered) {
+    return (
+      <div className="h-screen w-screen bg-lol-blue-dark flex flex-col justify-center items-center text-center p-4 bg-[url('/img/background.webp')] bg-cover bg-center">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <h1 className="text-6xl md:text-8xl font-display font-extrabold text-lol-gold-light text-shadow-lg">
+            LoL MetaMind
+          </h1>
+          <p className="mt-4 text-lg md:text-2xl max-w-3xl text-lol-gold-light/90 text-shadow-md">
+            Tu ventaja estratégica ha llegado.
+          </p>
+          <motion.div
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-12"
+          >
+             <EpicButton onClick={handleSiteEnter}>INGRESAR</EpicButton>
+          </motion.div>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <AnimatePresence>
@@ -96,7 +124,7 @@ export default function LandingPage() {
             transition={{ delay: 1.8, type: 'spring', stiffness: 100 }}
             className="mt-10"
           >
-            <EpicButton onClick={handleSiteEnter}>INGRESAR</EpicButton>
+            <EpicButton>Explorar Plataforma</EpicButton>
           </motion.div>
         </section>
 
@@ -120,18 +148,19 @@ export default function LandingPage() {
               style={{ boxShadow: '0 0 25px rgba(200, 155, 60, 0.4)' }}
               ref={videoContainerRef}
             >
-              <div className="relative w-full">
-                <VideoPlayer
-                  videoId="NolHvXjZA4A"
-                  isMuted={isMuted}
-                />
-                <button
-                  onClick={toggleMute}
-                  className="absolute bottom-4 right-4 p-2 bg-lol-blue-medium/70 rounded-full text-lol-gold-light hover:bg-lol-blue-medium transition-colors"
-                >
-                  {isMuted ? <FaVolumeMute size={24} /> : <FaVolumeUp size={24} />}
-                </button>
-              </div>
+                <div className="relative w-full">
+                    <VideoPlayer
+                        videoId="NolHvXjZA4A"
+                        onReady={onPlayerReady}
+                        isMuted={isMuted}
+                    />
+                    <button
+                        onClick={toggleMute}
+                        className="absolute bottom-4 right-4 p-2 bg-lol-blue-medium/70 rounded-full text-lol-gold-light hover:bg-lol-blue-medium transition-colors"
+                    >
+                        {isMuted ? <FaVolumeMute size={24} /> : <FaVolumeUp size={24} />}
+                    </button>
+                </div>
             </motion.div>
           </div>
         </section>

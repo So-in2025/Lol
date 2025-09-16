@@ -124,7 +124,9 @@ export default function LandingPage() {
             transition={{ delay: 1.8, type: 'spring', stiffness: 100 }}
             className="mt-10"
           >
-            <EpicButton>Explorar Plataforma</EpicButton>
+            <a href="https://couchmetamind.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <EpicButton>Explorar Plataforma</EpicButton>
+            </a>
           </motion.div>
         </section>
 
@@ -207,7 +209,7 @@ export default function LandingPage() {
                     <li className="flex items-start gap-3"><FaCheckCircle className="text-lol-blue-accent mt-1 flex-shrink-0" /> <div><strong className="text-lol-gold-light">Todo lo del Plan Gratuito,</strong> y además:</div></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Builds y Runas Adaptativas</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Consejos Estratégicos en Vivo</strong></li>
-                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-light">Análisis Post-Partida Detallado</strong></li>
+                    <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-light" /> <strong className="text-lol-gold-light">Análisis Post-Partida Detallado</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Overlays Inteligentes Animados</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">Clips Ilimitados sin marca</strong></li>
                     <li className="flex items-center gap-3"><FaCheckCircle className="text-lol-blue-accent" /> <strong className="text-lol-gold-light">TTS Pro en Overlay y Clips</strong></li>
@@ -223,7 +225,9 @@ export default function LandingPage() {
             <motion.p initial={{ y: 50, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }} className="text-lol-gold-light/90 text-lg md:text-2xl mb-10 max-w-3xl mx-auto text-shadow-md">
                 Dejá de adivinar. Empezá a dominar. Uníte a la revolución de estrategia y contenido con el poder de la IA y la astrología.
             </motion.p>
-            <EpicButton>Registrate Gratis</EpicButton>
+            <a href="https://couchmetamind.vercel.app/" target="_blank" rel="noopener noreferrer">
+                <EpicButton>Registrate Gratis</EpicButton>
+            </a>
         </section>
 
         <footer className="py-8 bg-lol-blue-dark text-center text-lol-gold-light/70 border-t border-lol-gold-dark">

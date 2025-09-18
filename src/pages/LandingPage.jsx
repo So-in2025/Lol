@@ -116,7 +116,8 @@ export default function LandingPage() {
             transition={{ delay: 1, duration: 1 }}
             className="mt-4 text-lg md:text-2xl max-w-3xl text-lol-gold-light/90 text-shadow-md"
           >
-            La plataforma definitiva que fusiona la astrologia con la IA, y analiticas oficiales, para darte coaching en tiempo real, clips virales y una ventaja estratégica
+            La plataforma definitiva que fusiona la astrologia con la IA, y analiticas oficiales, para darte coaching en tiempo real, clips virales y una ventaja estratégica.
+            Bienvenido al futuro del coaching. Una experiencia inmersiva que se adapta a tu estilo.
           </motion.p>
           <motion.div
             initial={{ scale: 0 }}
@@ -138,7 +139,7 @@ export default function LandingPage() {
             transition={{ duration: 1 }}
             className="text-4xl md:text-6xl font-display font-bold text-center mb-12 text-lol-gold text-shadow-md"
           >
-            Así se Ve la Gloria
+            Una Nueva Era en el Juego
           </motion.h2>
           <div className="flex justify-center">
             <motion.div

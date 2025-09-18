@@ -152,7 +152,7 @@ export default function LandingPage() {
             >
                 <div className="relative w-full">
                     <VideoPlayer
-                        videoId="NolHvXjZA4A"
+                        videoId="jss22SRCvms"
                         onReady={onPlayerReady}
                         isMuted={isMuted}
                     />
